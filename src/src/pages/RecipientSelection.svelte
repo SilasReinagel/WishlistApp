@@ -6,7 +6,7 @@
   import BackButton from "../components/BackButton.svelte";
     import { navigateTo } from "../navigator";
 
-  let nonSelfUsers = $groupUsers.filter(u => u.itemId !== $currentUser.itemId);
+  let givableUsers = $groupUsers;
 
   const onClick = (user) => {
     console.log("Clicked", { user });
@@ -25,7 +25,7 @@
   </div>
   <h1>Who Do You Want To Give To?</h1>
   <div class="flex-rows center-self">
-    {#each nonSelfUsers as user}
+    {#each givableUsers as user}
       <ClickCard text={user.item.displayName} onClick={() => onClick(user)}/>
     {/each}
   </div>
