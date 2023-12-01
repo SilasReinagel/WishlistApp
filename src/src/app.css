@@ -25,9 +25,12 @@ a:hover {
 body {
   margin: 0;
   display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  background-image: url('/bg.jpg');
+  background-position: center;
+  background-size: cover;
+  color: #efefef;
 }
 
 h1 {
@@ -37,13 +40,6 @@ h1 {
 
 .card {
   padding: 2em;
-}
-
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
 }
 
 button {
@@ -63,6 +59,51 @@ button:hover {
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -1rem;
+}
+
+.col {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 0 1rem;
+}
+
+.pointer {
+  cursor: pointer !important;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.center-self {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.flex-rows {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.full-width {
+  width: 100%;
+  max-width: 100vw;
+  margin-left: 10;
+  margin-right: 10;
+}
+
+.mt-2 {
+  margin-top: 2rem;
 }
 
 @media (prefers-color-scheme: light) {
