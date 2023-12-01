@@ -1,5 +1,7 @@
 <script>
   export let text;
+  export let number;
+  export let url;
   export let onClick;
 
 </script>
@@ -50,17 +52,16 @@
   url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACEAAAAXCAYAAACFxybfAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAodJREFUeNrsVb1rWlEUv2pN/GqspKRSKFYXWzEloIWif0Fn6dJChQ7OQil0qd3EzcEpg0OgdHDr4CQODk7VRlLMEIVqApX4We0zflR9/Z1Ui4T34ksaaAYP/Hzc673n/M6550PG8zz73yKjn0wm83fDYDAwo9HINBrNnwOQg4MDs0ql2lQqlfdAWont7ng8Pjw+Ps44nc4G1pI9EXWaSOzt7TGO42aH5Pv7+08ajUZ0MBiUeXEZd7vdL5VK5fX29rZ+5tQiEmdxKrlcjsEYczgcynK5/BKKv/IXFNz/XiqVXkHdjUuRIA9SqdRD8or/R8Ez9fr9fqHVakUR4c2z0REjIQuHw2ZcrPBXLCA0RHTezEdHjIQqkUhEr9I4HOILhQLf6/VoOUFEvDMiQiToDx1Cdz+bzZ6bUFarlel0OkkVUK/XWbvdPoVer5fh3ntsfwJ+CJ2XA4p0Op1bpBgJyxDehQQ6nQ5DZXHBYDBZq9V+EhFUndnr9drEqoc2bwJbwGPgtohuVSwWe2Gz2TZMJpNgRKi6qtUqg2EWj8dTgUDgo0KhWPN4PC70EvXOzs67fD6/S6kiRIKeZA1YJ2MiJNbdbvfTUCjkV6vVK2hcDF8GI2w0GrGTkxM2HA5PDxaLxSOfz/cWEfk81X0XIMMFgJJ/srBjCgk8IdcfuVyuZ36//7nFYtkQyAMumUzuRiKRD0jMFLa+AZOpYwqgB/ziBVqmVBKUO7eAB/R0WG/Z7XaTVqtdbTabHJL6EK2djBaBPHA0NSqpbUsiMUeEBgpF4Q5AbZrmSJ/yEWgBTaBNHl9kdkgmMUeG7qwAq9PqovceTA3zlxlgsuswyuXsGsiSxJLEkoSY/BZgAEjRodi+uBruAAAAAElFTkSuQmCC) no-repeat 100% 0;
   
 }
-.button:hover {
+/* .button:hover {
   cursor: pointer;
   background: #a61715;
   text-shadow: 0 1px 2px rgba(0,0,0,0.75), 0 0 40px #FFF;
   box-shadow:
-    inset 1px 1px 0px rgba(255,255,255,0.25), /* highlight */
-    inset 0 0 6px #da3b2c, /* inner glow */
-    inset 0 80px 80px -40px #dd4330, /* gradient */
-    1px 1px 3px rgba(0,0,0,0.75); /* shadow */
-    
-}
+    inset 1px 1px 0px rgba(255,255,255,0.25),
+    inset 0 0 6px #da3b2c,
+    inset 0 80px 80px -40px #dd4330,
+    1px 1px 3px rgba(0,0,0,0.75);
+} */
 .button:focus {
   outline: none; /*FF*/
 }
@@ -77,8 +78,22 @@
           transition: 50ms linear;
 }
 
+  .large-text {
+    font-size: 48px;
+  }
 </style>
 
-<div class="button" on:click|preventDefault={onClick}>
-  {text}
+<div class="button" on:click={onClick}>
+    <div class="full-width row no-wrap center flex-between px-2">
+      <div class="full-width col center">
+        <div class="mb-1">{text}</div>
+        <div><a href = {url} target="_blank" rel="noopener noreferrer">
+          Link
+        </a>
+      </div>
+    </div>
+    {#if number > 1}
+      <div class="large-text">{number}</div>
+    {/if}
+  </div>
 </div>

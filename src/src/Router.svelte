@@ -10,6 +10,7 @@
     import WishlistAdmin from './pages/Admin/WishlistAdmin.svelte';
     import RecipientSelection from './pages/RecipientSelection.svelte';
     import RecipientWishlist from './pages/RecipientWishlist.svelte';
+    import GivingList from './pages/GivingList.svelte';
 
     const routeTo = (path) => {
         window.history.pushState({}, '', path);
@@ -27,6 +28,7 @@
         '/wishlist': MyWishlist,
         '/give': RecipientSelection,
         '/gifts': RecipientWishlist,
+        '/giving': GivingList,
     };
 
     const handleNavigation = () => {

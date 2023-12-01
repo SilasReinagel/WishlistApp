@@ -17,11 +17,13 @@
   }
 </script>
 
-<h1>Wishlist Admin</h1>
+<div class="full-width col center">
+  <h1>Wishlist Admin</h1>
 
-{#each $wishlistItems as i}
-  <div class="row">
-    <p>{i.item.displayName}</p>
-    <button on:click={() => onDeleteWishlistItem(i)}>X</button>
-  </div>
-{/each}
+  {#each $wishlistItems as i}
+    <div class="row">
+      <p class="mr-6">{i.item.displayName}</p>
+      <button on:click={() => onDeleteWishlistItem(i)}>X</button>
+    </div>
+  {/each}
+</div>

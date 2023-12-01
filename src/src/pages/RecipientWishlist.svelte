@@ -31,9 +31,13 @@
     {#if wishlist.length <= 0}
       <h3>{receiptDisplayName} has no unclaimed items on their wishlist</h3>
     {/if}
-    <div class="rows">
+    <div class="flex-rows">
       {#each wishlist as item}
-        <ChristmasButton text={item.item.displayName} onClick={() => {}}/>
+        <ChristmasButton 
+          text={item.item.displayName} 
+          number={item.item.maxGivers}
+          url={item.item.url}
+          onClick={() => {}}/>
       {/each}
     </div>
   </div>

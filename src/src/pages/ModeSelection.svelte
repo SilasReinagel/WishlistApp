@@ -8,5 +8,6 @@
   <div class="flex-rows center-self">
     <ClickCard text="Manage Wishlist" onClick={() => navigateTo("/wishlist")}/>
     <ClickCard text="Give A Gift" onClick={() => navigateTo("/give")}/>
+    <ClickCard text="Manage My Giving" onClick={() => navigateTo("/giving")}/>
   </div>
 </div>
