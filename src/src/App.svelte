@@ -5,7 +5,7 @@
   import AppBar from './components/AppBar.svelte';
 </script>
 
-{#if isLoaded}
+{#if $isLoaded}
   <main>
     <AppBar />
     <Router />
