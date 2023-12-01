@@ -79,3 +79,11 @@ export const deleteWishlistItem = async id => {
     itemId: id,
   })
 }
+
+export const updateWishlistItem = async (id, item) => {
+  await userbase.updateItem({
+    databaseName: 'wishlistItems',
+    itemId: id,
+    item
+  })
+}

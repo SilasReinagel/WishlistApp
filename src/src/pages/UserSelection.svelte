@@ -5,6 +5,8 @@
     import ClickCard from "../components/ClickCard.svelte";
     import { navigateTo } from "../navigator";
 
+  let users = [];
+
   const onClick = (user) => {
     console.log("Clicked", { user });
     currentUser.set(user);
@@ -12,14 +14,19 @@
   };
 
   onMount(async () => {
+    groupUsers.subscribe((gu) => {
+      const sortedUsers = gu.sort((a, b) => a.item.displayName.localeCompare(b.item.displayName));
+      users = sortedUsers;
+    });
     await initGroupUsersDatabase();
+    currentUser.set(undefined)
   });
 </script>
 
 <div class="full-width col center">
   <h1>Who Are You?</h1>
   <div class="flex-rows center-self">
-    {#each $groupUsers as user}
+    {#each users as user}
       <ClickCard text={user.item.displayName} onClick={() => onClick(user)}/>
     {/each}
   </div>

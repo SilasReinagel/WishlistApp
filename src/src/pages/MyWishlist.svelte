@@ -34,8 +34,7 @@
         <ChristmasButton 
           text={item.item.displayName}
           number={item.item.maxGivers}
-          url={item.item.url} 
-          onClick={() => {}}/>
+          url={item.item.url} />
       {/each}
     </div>
   </div>

@@ -7,6 +7,7 @@ export const getLocalStorageJson = (localStorageKey, defaultValue) => {
             return JSON.parse(saved);
         } catch (e) {
             console.error('Failed to parse user data from local storage', e);
+            return defaultValue;
         }
     }
     else if (defaultValue) {

@@ -9,13 +9,14 @@
   let isSubmitting = false;
 
   let currentUserId = $currentUser.itemId;
+  let currentUserDisplayName = $currentUser.item.displayName;
 
   const onSubmit = async () => {
-    console.log("Adding", { newItemName, newItemUrl, newItemMaxCopies });
-    isSubmitting = true;
     if (!!newItemName && newItemName.length > 3) {
+      console.log("Adding", { newItemName, newItemUrl, newItemMaxCopies });
+      isSubmitting = true;
       try {
-        await addNewWishlistItem({ userId: currentUserId, displayName: newItemName, url: newItemUrl, maxGivers: newItemMaxCopies });
+        await addNewWishlistItem({ userId: currentUserId, userDisplayName: currentUserDisplayName, displayName: newItemName, url: newItemUrl, maxGivers: newItemMaxCopies });
         newItemName = "";
         newItemUrl = "";
         newItemMaxCopies = 1;
@@ -71,7 +72,7 @@
   <form class="col mt-2" on:submit|preventDefault={onSubmit}>
     <div class="header">Add Wishlist Item</div>
     <input type="text" placeholder="Item Name" bind:value={newItemName}/>
-    <input type="number" placeholder="Max Copies" min="1" bind:value={newItemMaxCopies}/>
+    <input type="number" placeholder="Max Copies" bind:value={newItemMaxCopies}/>
     <input type="text" placeholder="URL" bind:value={newItemUrl}/>
     <button type="submit">Add</button>
   </form>

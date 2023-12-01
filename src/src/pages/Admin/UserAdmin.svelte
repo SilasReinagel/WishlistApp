@@ -36,23 +36,22 @@
   }
 </script>
 
-<h1>User Admin</h1>
+<div class="full-width col center">
+  <h1>User Admin</h1>
 
-{#each $groupUsers as user}
-  <div class="row">
-    <p>{user.item.displayName}</p>
-    <button on:click={() => onDeleteUser(user)}>X</button>
-  </div>
-{/each}
+  {#if isSubmitting}
+    <LoadingSpinner/>
+  {:else}
+    <form on:submit|preventDefault={onSubmit}>
+      <input type="text" bind:value={newUser} />
+      <button type="submit">Add User</button>
+    </form>
+  {/if}
 
-<hr/>
-
-{#if isSubmitting}
-  <LoadingSpinner/>
-{:else}
-  <form on:submit|preventDefault={onSubmit}>
-    <input type="text" bind:value={newUser} />
-    <button type="submit">Add User</button>
-  </form>
-{/if}
-
+  {#each $groupUsers as user}
+    <div class="row">
+      <p class="mr-6">{user.item.displayName}</p>
+      <button on:click={() => onDeleteUser(user)}>X</button>
+    </div>
+  {/each}
+</div>
