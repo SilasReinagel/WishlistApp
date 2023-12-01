@@ -2,12 +2,13 @@
   import { onMount } from "svelte";
   import { initGroupUsersDatabase, initWishlistItemsDatabase, login } from "../../datasource";
   import LoadingSpinner from "../../components/LoadingSpinner.svelte";
-  import { isLoaded } from "../../appState";
+  import { isLoaded, isLoggedIn } from "../../appState";
 
   onMount(async () => {
     await login();
     await initGroupUsersDatabase();
     await initWishlistItemsDatabase();
+    isLoggedIn.set(true);
     isLoaded.set(true);
   });
 
