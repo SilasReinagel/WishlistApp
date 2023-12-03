@@ -5,16 +5,15 @@
   import { initWishlistItemsDatabase, updateWishlistItem } from "../datasource";
   import ChristmasButton from "../components/ChristmasButton.svelte";
   import BackButton from "../components/BackButton.svelte";
-    import LoadingSpinner from "../components/LoadingSpinner.svelte";
-    import { howManyAreYouGiving } from "../wishlistItemUtils";
+  import LoadingSpinner from "../components/LoadingSpinner.svelte";
+  import { howManyAreYouGiving, howManyStillGivable } from "../wishlistItemUtils";
 
   let recipientUserId = $recipientUser.itemId;
   let receiptDisplayName = $recipientUser.item.displayName;
   let claimee = { userId: $currentUser.itemId, displayName: $currentUser.item.displayName }
 
-  const getNumToGiveRemaining = (row) => row.item.maxGivers - (row.item.givers?.length ?? 0);
   const areYouGiving = (row) => (row.item?.givers ?? []).find(g => g.userId === claimee.userId);
-  const shouldShow = (row) => getNumToGiveRemaining(row) > 0 || areYouGiving(row);
+  const shouldShow = (row) => howManyStillGivable(row) > 0 || areYouGiving(row);
 
   let wishlist = $wishlistItems
     .filter(i => i.item.userId === recipientUserId && shouldShow(i));
@@ -56,14 +55,14 @@
       {#each wishlist as row}
         <ChristmasButton 
           text={row.item.displayName} 
-          number={getNumToGiveRemaining(row)}
+          number={howManyStillGivable(row)}
           url={row.item.url}>
             <div slot="action">
               {#if submittingItems.includes(row)}
                 <LoadingSpinner />
-              {:else if getNumToGiveRemaining(row) <= 0 && areYouGiving(row)}
+              {:else if howManyStillGivable(row) <= 0 && areYouGiving(row)}
                 <div class="green-sphere-button center"><div class="move-up-3px">{howManyAreYouGiving(claimee.userId, row)}</div></div>
-              {:else if getNumToGiveRemaining(row) <= 0}
+              {:else if howManyStillGivable(row) <= 0}
                 <div class="green-sphere-button center"><div class="move-down-3px">😄</div></div>
               {:else if areYouGiving(row)}
                 <button class="red-sphere-button center pointer" on:click={() => onClaim(row)}>

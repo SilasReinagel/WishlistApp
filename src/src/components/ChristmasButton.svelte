@@ -3,6 +3,7 @@
   export let number;
   export let url;
 
+  import AnchoredItem from "./AnchoredItem.svelte";
 </script>
 
 <style>
@@ -54,15 +55,6 @@
   .large-text {
     font-size: 48px;
   }
-
-  .action-item {
-    position: absolute;
-    width: 48px;
-    height: 48px;
-    bottom: -12px; 
-    left: -12px;
-    border-radius: 50%;
-  }
 </style>
 
 <div class="button">
@@ -79,7 +71,7 @@
       <div class="large-text">{number}</div>
     {/if}
   </div>
-  <div class="action-item">
+  <AnchoredItem className="bottom-left">
     <slot name="action"/>
-  </div>
+  </AnchoredItem>      
 </div>

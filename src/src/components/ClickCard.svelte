@@ -10,8 +10,7 @@
       border-radius: 30px;
       box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.5);
       text-align: center;
-      width: max-content;
-      margin: 8px;
+      margin: 12px;
   }
 
   .button {
@@ -35,10 +34,21 @@
       box-shadow: inset 1px 1px 5px #0b0c0d,
                   inset -1px -1px 5px #2e3036;
   }
+
+  .bottom-left-cus {
+    height: 0px;
+    position: relative;
+    bottom: 24px;
+    left: -20px;
+    pointer-events: none;
+  }
 </style>
 
 <div class="button-container">
   <button class="button" on:click|preventDefault={onClick}>
-      {text}
+    {text}
   </button>
+  <div class="anchored-item bottom-left-cus">
+    <slot name="counter"/>
+  </div> 
 </div>
